@@ -29,4 +29,8 @@ Route::middleware(['isLogin'])->group(function () {
     Route::get('/logout', [userController::class, 'logout'])->name('logout');
     Route::get('/stok', [adminController::class, 'stok'])->name('stok');
     Route::get('/pendataan', [adminController::class, 'pendataan'])->name('pendataan');
+    Route::post('/tambah-stok', [adminController::class, 'tambahStok'])->name('tambah.stok');
+    Route::get('/edit-stok/{id}', [adminController::class, 'editStok'])->name('edit.stok');
+    Route::put('/edit/{id}', [adminController::class, 'edit'])->name('edit');
+    Route::delete('/delete-stok/{id}', [adminController::class, 'deleteStok'])->name('delete.stok');
 });

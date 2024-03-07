@@ -2,8 +2,9 @@
 
 @section('layout')
 
-<form action="{{route('tambah.stok')}}" method="POST">
+<form action="{{ route('edit', $stok->id) }}" method="POST">
     @csrf
+    @method('PUT')
     <div class="mb-3">
       <label class="form-label">Nama Produk</label>
       <input type="text" name="namaproduk" class="form-control">

@@ -76,14 +76,14 @@
               <span class="menu-header-text">Foto</span>
             </li>
 
-            <li class="menu-item {{ (request()->is('add/foto')) ? 'active' : '' }}" >
+            <li class="menu-item {{ (request()->is('pendataan')) ? 'active' : '' }}" >
               <a href="/pendataan" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus"></i>
                 <div data-i18n="Basic">Pendataan Barang</div>
               </a>
             </li>
 
-            <li class="menu-item {{ (request()->is('foto')) ? 'active' : '' }}" >
+            <li class="menu-item {{ (request()->is('stok')) ? 'active' : '' }}" >
               <a href="/stok" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Stok Barang</div>
