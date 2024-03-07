@@ -73,7 +73,7 @@
             </li>
 
             <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Foto</span>
+              <span class="menu-header-text">Stok</span>
             </li>
 
             <li class="menu-item {{ (request()->is('pendataan')) ? 'active' : '' }}" >
@@ -88,6 +88,24 @@
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Stok Barang</div>
               </a>
+            </li>
+
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Pelanggan</span>
+            </li>
+
+            <li class="menu-item {{ (request()->is('tambah-pelanggan')) ? 'active' : '' }}" >
+                <a href="/tambah-pelanggan" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-plus"></i>
+                  <div data-i18n="Basic">Tambah pelanggan</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{ (request()->is('data-pelanggan')) ? 'active' : '' }}" >
+                <a href="/data-pelanggan" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-collection"></i>
+                  <div data-i18n="Basic">Data Pelanggan</div>
+                </a>
             </li>
 
           </ul>

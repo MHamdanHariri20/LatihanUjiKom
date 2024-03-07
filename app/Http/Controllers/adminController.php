@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Pelanggan;
 
 class adminController extends Controller
 {
@@ -56,6 +57,38 @@ class adminController extends Controller
     public function deleteStok($id){
         $product = Produk::findOrFail($id);
         $product->delete();
+
+        return redirect()->back();
+    }
+
+    public function dataPelanggan(){
+        $pelanggan = Pelanggan::all();
+        return view('dashboard.data-pelanggan', compact('pelanggan'));
+    }
+
+    public function tambahPelanggan(){
+        return view('dashboard.tambah-pelanggan');
+    }
+
+    public function tambahPelanggandata(Request $request){
+        $request->validate([
+            'namalengkap' => 'required',
+            'alamat' => 'required',
+            'nomortelepon' => 'required',
+        ]);
+
+        Pelanggan::create([
+            'namalengkap' => $request->namalengkap,
+            'alamat' => $request->alamat,
+            'nomortelepon' => $request->nomortelepon,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function deletePelanggan($id){
+        $pelanggan = Pelanggan::FindOrFail($id);
+        $pelanggan->delete();
 
         return redirect()->back();
     }
