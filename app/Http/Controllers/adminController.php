@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Pelanggan;
+use App\Models\DetailPenjualan;
+use App\Models\Penjualan;
+
+use Carbon\Carbon;
 
 class adminController extends Controller
 {
@@ -89,6 +93,40 @@ class adminController extends Controller
     public function deletePelanggan($id){
         $pelanggan = Pelanggan::FindOrFail($id);
         $pelanggan->delete();
+
+        return redirect()->back();
+    }
+
+    public function dataPenjualan(){
+        return view('dashboard.data-penjualan');
+    }
+
+    public function tambahPenjualan(){
+        $pelanggan = Pelanggan::all();
+        $produk = Produk::all();
+        return view('dashboard.input-penjualan', compact('pelanggan', 'produk'));
+    }
+
+    public function tambahPenjualanData(Request $request){
+        $request->validate([
+            'produkId' => 'required',
+            'pelangganId' => 'required',
+            'subtotal' => 'required',
+            'jumlahproduk' => 'required',
+        ]);
+
+        $penjualan = Penjualan::create([
+            'pelangganId' => $request->pelangganId,
+            'totalharga' => $request->subtotal,
+            'tanggalpenjualan' => Carbon::now(),
+        ]);
+
+        DetailPenjualan::create([
+            'produkId' => $request->produkId,
+            'penjualanId' => $penjualan->id,
+            'subtotal' => $request->subtotal,
+            'jumlahproduk' => $request->jumlahproduk,
+        ]);
 
         return redirect()->back();
     }

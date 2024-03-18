@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('jumlahproduk');
             $table->decimal('subtotal', 10, 2);
-            $table->foreignId('produkId');
+            $table->foreignId('produkId'); 
             $table->foreignId('penjualanId');
             $table->timestamps();
 

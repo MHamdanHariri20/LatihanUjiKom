@@ -4,24 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\adminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/home', [userController::class, 'home'])->name('home');
 
 Route::middleware(['isGuest'])->group(function () {
     Route::get('/login', [userController::class, 'login'])->name('login');
     Route::post('/login/auth', [userController::class, 'loginAuth'])->name('login.auth');
-    Route::get('/register', [userController::class, 'register'])->name('register');
-    Route::post('register/auth', [userController::class, 'registerAuth'])->name('register.auth');
+});
+
+Route::middleware(['isLogin', 'cekRole:admin'])->group(function () {
+    Route::get('/petugas', [userController::class, 'petugas'])->name('petugas');
+    Route::post('/input-petugas', [userController::class, 'InputPetugas'])->name('input.petugas');
+    Route::get('/data-petugas', [userController::class, 'dataPetugas'])->name('data.petugas');
+    Route::delete('/delete-petugas/{id}', [userController::class, 'deletePetugas'])->name('delete.petugas');
 });
 
 Route::middleware(['isLogin'])->group(function () {
@@ -42,4 +37,8 @@ Route::middleware(['isLogin'])->group(function () {
     Route::post('/tambah-pelanggan/tambah', [adminController::class, 'tambahPelanggandata'])->name('tambah.pelanggan.data');
     Route::delete('/delete-pelanggan/{id}', [adminController::class, 'deletePelanggan'])->name('delete.pelanggan');
 
+    //penjualan
+    Route::get('/data-penjualan', [adminController::class, 'dataPenjualan'])->name('data.penjualan');
+    Route::get('/input-penjualan', [adminController::class, 'tambahPenjualan'])->name('tambah.penjualan');
+    Route::post('/input-penjualan-data', [adminController::class, 'tambahPenjualandata'])->name('tambah.penjualan.data');
 });

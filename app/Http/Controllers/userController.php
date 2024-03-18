@@ -36,11 +36,11 @@ class userController extends Controller
         return redirect('dashboard');
     }
 
-    public function register(){
-        return view('register');
+    public function petugas(){
+        return view('dashboard.input-petugas');
     }
 
-    public function registerAuth(Request $request){
+    public function inputPetugas(Request $request){
         $request->validate([
             'email' => 'required',
             'name' => 'required',
@@ -56,6 +56,18 @@ class userController extends Controller
             'role' => 'petugas',
         ]);
         return redirect('/login');
+    }
+
+    public function dataPetugas(){
+        $user = User::all();
+        return view('dashboard.data-petugas', compact('user'));
+    }
+
+    public function deletePetugas($id){
+        $deletePetugas = User::FindOrFail($id);
+        $deletePetugas->delete();
+
+        return redirect()->back();
     }
 
     public function logout(){

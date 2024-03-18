@@ -108,6 +108,42 @@
                 </a>
             </li>
 
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Penjualan</span>
+            </li>
+
+            <li class="menu-item {{ (request()->is('input-penjualan')) ? 'active' : '' }}" >
+                <a href="/input-penjualan" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-plus"></i>
+                  <div data-i18n="Basic">Input Penjualan</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{ (request()->is('data-penjualan')) ? 'active' : '' }}" >
+                <a href="/data-penjualan" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-collection"></i>
+                  <div data-i18n="Basic">Data Penjualan</div>
+                </a>
+            </li>
+
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Petugas</span>
+            </li>
+
+            <li class="menu-item {{ (request()->is('petugas')) ? 'active' : '' }}" >
+                <a href="/petugas" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-plus"></i>
+                  <div data-i18n="Basic">Tambahkan Petugas</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{ (request()->is('data-petugas')) ? 'active' : '' }}" >
+                <a href="/data-petugas" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-collection"></i>
+                  <div data-i18n="Basic">Data Petugas</div>
+                </a>
+            </li>
+
           </ul>
         </aside>
         <!-- / Menu -->
